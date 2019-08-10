@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">InratingTop</string>
+    <string name="text_tvDone">Готово</string>
+    <string name="text_inrating_top">inrating.top</string>
+    <string name="usenname">Usenname</string>
+    <string name="text_likers_count">Лайки</string>
+    <string name="text_views_counter">Просмотры</string>
+    <string name="text_comentators">Коментатаоры</string>
+    <string name="text_more">ещё</string>
+    <string name="text_markers">Отметки</string>
+    <string name="text_reposts">Репосты</string>
+    <string name="text_bookmarks">Закладки</string>
 </resources>

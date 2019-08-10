@@ -1,18 +1,430 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <include
+        android:id="@+id/include"
+        layout="@layout/toolbar" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginTop="1dp"
+        android:background="@android:color/white"
+        android:text="Статистика поста"
+        android:textColor="@android:color/holo_blue_bright"
+        app:layout_constraintTop_toBottomOf="@+id/include" />
+
+<!--Card views-->
+
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="5dp"
+        android:padding="5dp"
+        app:cardBackgroundColor="@android:color/white"
+        card_view:cardCornerRadius="8dp"
+        card_view:layout_constraintTop_toBottomOf="@+id/button">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:src="@android:drawable/ic_menu_view"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:textColor="#424242"
+                android:text="@string/text_views_counter"/>
+
+            <TextView
+                android:id="@+id/tv_views_counter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:text="0"
+                android:textColor="#424242" />
+
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+<!--Card Likes-->
+
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view_likers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="5dp"
+        android:padding="5dp"
+        app:cardBackgroundColor="@android:color/white"
+        card_view:cardCornerRadius="8dp"
+        card_view:layout_constraintTop_toBottomOf="@+id/card_view">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/ic_heart"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:textColor="#424242"
+            android:text="@string/text_likers_count"/>
+        <TextView
+            android:id="@+id/tv_likers_counter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textColor="#424242"
+            android:layout_marginLeft="10dp"
+            android:text="0"/>
+        <TextView
+            android:id="@+id/tv_likers_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="150dp"
+            android:layout_marginTop="5dp"
+            android:textColor="@android:color/holo_blue_bright"
+            android:text="ещё"/>
+
+        <TextView
+            android:id="@+id/tv_counter_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:text="0"
+            android:textColor="@android:color/holo_blue_bright" />
+        <TextView
+            android:id="@+id/tv_more_symbol"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textColor="@android:color/holo_blue_bright"
+            android:gravity="end"
+            android:layout_marginLeft="10dp"
+            android:text=">"/>
+
+
+    </LinearLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_likers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"/>
+    </LinearLayout>
+    </android.support.v7.widget.CardView>
+    <!--Card Commentators-->
+
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view_commentators"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="5dp"
+        android:padding="5dp"
+        app:cardBackgroundColor="@android:color/white"
+        card_view:cardCornerRadius="8dp"
+        card_view:layout_constraintTop_toBottomOf="@+id/card_view_likers">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:src="@drawable/ic_topic_48"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:textColor="#424242"
+                    android:text="@string/text_comentators"/>
+                <TextView
+                    android:id="@+id/tv_comentators_counter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:textColor="#424242"
+                    android:layout_marginLeft="10dp"
+                    android:text="0"/>
+                <TextView
+                    android:id="@+id/tv_commentators_more"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="150dp"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@android:color/holo_blue_bright"
+                    android:text="@string/text_more"/>
+
+                <TextView
+                    android:id="@+id/tv_commentators_counter_left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:text="0"
+                    android:textColor="@android:color/holo_blue_bright" />
+                <TextView
+                    android:id="@+id/tv_commentators_more_symbol"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@android:color/holo_blue_bright"
+                    android:gravity="end"
+                    android:layout_marginLeft="10dp"
+                    android:text=">"/>
+
+
+            </LinearLayout>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_commentators"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"/>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <!--Card Markers-->
+
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view_markers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="5dp"
+        android:padding="5dp"
+        app:cardBackgroundColor="@android:color/white"
+        card_view:cardCornerRadius="8dp"
+        card_view:layout_constraintTop_toBottomOf="@+id/card_view_commentators">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:src="@drawable/ic_bookmark_48"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:textColor="#424242"
+                    android:text="@string/text_markers"/>
+                <TextView
+                    android:id="@+id/tv_markers_counter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:textColor="#424242"
+                    android:layout_marginLeft="10dp"
+                    android:text="0"/>
+                <TextView
+                    android:id="@+id/tv_markers_more"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="150dp"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@android:color/holo_blue_bright"
+                    android:text="@string/text_more"/>
+
+                <TextView
+                    android:id="@+id/tv_markers_counter_left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:text="0"
+                    android:textColor="@android:color/holo_blue_bright" />
+                <TextView
+                    android:id="@+id/tv_markers_more_symbol"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@android:color/holo_blue_bright"
+                    android:gravity="end"
+                    android:layout_marginLeft="10dp"
+                    android:text=">"/>
+
+
+            </LinearLayout>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_markers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"/>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <!--Card Reposts-->
+
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_reposts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="5dp"
+        android:padding="5dp"
+        app:cardBackgroundColor="@android:color/white"
+        card_view:cardCornerRadius="8dp"
+        card_view:layout_constraintTop_toBottomOf="@+id/card_view_markers">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:src="@drawable/ic_retweet_48"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:textColor="#424242"
+                    android:text="@string/text_reposts"/>
+                <TextView
+                    android:id="@+id/tv_reposts_counter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:textColor="#424242"
+                    android:layout_marginLeft="10dp"
+                    android:text="0"/>
+                <TextView
+                    android:id="@+id/tv_reposts_more"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="150dp"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@android:color/holo_blue_bright"
+                    android:text="@string/text_more"/>
+
+                <TextView
+                    android:id="@+id/tv_reposts_counter_left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:text="0"
+                    android:textColor="@android:color/holo_blue_bright" />
+                <TextView
+                    android:id="@+id/tv_reposts_more_symbol"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@android:color/holo_blue_bright"
+                    android:gravity="end"
+                    android:layout_marginLeft="10dp"
+                    android:text=">"/>
+
+
+            </LinearLayout>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_reposts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"/>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <!--Card Bookmarks-->
+
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_bookmarks"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="5dp"
+        android:padding="5dp"
+        app:cardBackgroundColor="@android:color/white"
+        card_view:cardCornerRadius="8dp"
+        card_view:layout_constraintTop_toBottomOf="@+id/card_reposts">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/ic_bookmark_outline_48"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:textColor="#424242"
+                android:text="@string/text_bookmarks"/>
+
+            <TextView
+                android:id="@+id/tv_bookmarks_counter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:text="0"
+                android:textColor="#424242" />
+
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
 
 </android.support.constraint.ConstraintLayout>
+</ScrollView>
